@@ -1,0 +1,131 @@
+Sender: Ryan Elliott
+Received: April 5, 2021, 11:05 AM
+Text: Wanna get lunch tomorrow?
+Classification: Event
+Reminder: [April 6, 2021] Lunch with Ryan Elliott.
+
+###
+
+Sender: Harris Rothaermel
+Received: Jan 1, 2021, 12:01 AM
+Text: Happy New Year!
+Classification: Non-Event
+
+###
+
+Sender: Larkin Wisdom
+Received: Feb 13, 2021, 6:47 PM
+Text: Restaurant reservation is tomorrow at 8:00 PM at 1800 North State Street, Provo, Utah 84604.
+Classification: Event
+Reminder: [Feb 14, 2021] Dinner reservation at 8:00 PM with Larkin Wisdom at 1800 North State Street. 
+
+###
+
+Sender: Julie Whitlock
+Received: March 10, 2020, 5:55 PM
+Text: I just finished my exam. Brutal. :(
+Classification: Non-Event
+
+###
+
+Sender:  Rachel Smith
+Recieved: July 4, 2015, 12:01 PM
+Text: Happy 4th!
+Classification: Non-Event
+
+###
+
+Sender: Frank Rothaermel
+Recieved: Oct 15, 2017, 3:15 PM
+Text: Make sure to pick up Roman today!
+Classification: Event
+Reminder: [Oct 15, 2017] Pick up Roman
+
+###
+
+Sender: Alex Kougasian
+Recieved: Feb 23, 2021, 10:11 AM
+Text: I got it! I got an interview! It's on Thursday at 3PM!
+Classification: Event
+Reminder: [Feb 25, 2021] Alex Kougasian Interview
+
+###
+
+Sender: Mom
+Recieved: Dec 24, 2020, 2:04PM
+Text: Merry Christmas!
+Classification: Non-Event
+
+###
+
+Sender: Dad
+Recieved: Apr 28, 2010, 7:14 AM
+Text: Don't forget you have a dentist appointment in two weeks!
+Classification: Event
+Reminder: [May 12, 2010] Dentist Appointment
+
+###
+
+Sender: Joseph M.
+Recieved: Aug 1, 2018, 8:30 PM
+Text: Classes start in a week!
+Classification: Event
+Reminder: [Aug 8, 2018] Classes Start
+
+###
+
+Sender: Dario Sujica
+Recieved: May 11, 2021, 3:12 PM
+Text: Got a new job! I start in three weeks!
+Classification: Event
+Reminder: [June 4, 2021] Dario Sujica New Job
+
+###
+
+Sender: Scott J.
+Recieved: Feb 3, 2021, 2:28 PM
+Text: Just sent my grad school applications. Will know results in two weeks!
+Classification: Event
+Reminder: [Feb 17, 2021] Scott J grad school application results
+
+###
+
+Sender: Ben S
+Recieved: Jun 4, 2020, 7:31 AM
+Text: catJam
+Classification: Non-Event
+
+###
+
+Sender: James Holden
+Recieved: Sept 10, 2012, 4:20 PM
+Text: BLAZE IT!
+Classification: Non-Event
+
+###
+
+Sender: Harris Rothaermel
+Recieved: Nov 2, 2011, 3:12 PM
+Text: Let's go running tomorrow at 9.
+Classification: Event
+Reminder: [Nov 3, 2011] Running with Harris Rothaermel
+
+###
+
+Sender: Winston Zimmerman
+Recieved: June 10, 2017, 1:32 PM
+Text: It's my birthday tomorrow!
+Classification: Event
+Reminder: [June 11, 2017] Winston's birthday
+
+###
+
+Sender: Emily
+Recieved: Aug 23, 2021, 8:21 PM
+Text: Tomorrow is Hank's birthday
+Classification: Event
+Reminder: [Aug 24, 2021] Hank's birthday.
+
+###
+
+
