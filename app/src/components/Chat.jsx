@@ -7,9 +7,9 @@ export default class Chat extends Component {
         const chat_container_styles = `${styles['chat-container']} p-10`;
         const image_styles = `${styles['profile-image']} w-50 h-50 br-100 mr-20`;
         const text_container_styles = `${styles['text-container']}`;
-        const chat_name_styles = `${styles.['chat-name']} text-gray-darker font-medium`
+        const chat_name_styles = `${styles['chat-name']} text-gray-darker font-medium`;
         const preview_styles = `${styles['message-preview']} text-gray-regular`;
-        
+
         return (
             <div className={chat_container_styles}>
                 <img src={profile} alt="" className={image_styles}/>
