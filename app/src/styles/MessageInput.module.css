@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    height: 40px;
+    width: 50%;
+}
+
+.message-input {
+    font-family: sans-serif;
+    background: #ffffff;
+    color: #3f3f46;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    border-radius: 100px;
+    line-height: 1.25rem;
+    padding: 10px;
+    resize: none;
+}
+
+.message-input::placeholder {
+    font-size: 0.75rem;
+    color: #d4d4d8;
+}
+
+.send-button {
+    background-color: #7582ff;
+    border-radius: 100%;
+    box-shadow: 0px 3px 5px rgba(117, 130, 255, 0.15);
+}

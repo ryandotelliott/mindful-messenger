@@ -1,6 +1,7 @@
 import './App.css';
-import ChatsContainer from './components/ChatsContainer';
-import MessageContainer from './components/MessagesContainer';
+// import ChatsContainer from './components/ChatsContainer';
+// import MessageContainer from './components/MessagesContainer';
+import MessageInput from './components/MessageInput';
 
 function App() {
     let chats = [
@@ -37,7 +38,7 @@ function App() {
     ]
   return (
     <div className="App">
-        <MessageContainer messages={messages} />
+        <MessageInput />
     </div>
   );
 }
