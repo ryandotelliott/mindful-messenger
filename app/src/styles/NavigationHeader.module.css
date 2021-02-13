@@ -6,7 +6,9 @@
     align-items: center;
     min-height: 90px;
     max-height: 90px;
-    max-width: 500px;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
 }
 
 .header {
