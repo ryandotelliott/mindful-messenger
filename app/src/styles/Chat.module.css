@@ -1,0 +1,39 @@
+.chat-container {
+    width: 100%;
+    max-width: 500px;
+    height: 80px;
+    background-color: #fff;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-image {
+    flex-shrink: 0;
+}
+
+.chat-name {
+    display: -webkit-box;
+    width: 100%;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.message-preview {
+    display: -webkit-box;
+    width: 100%;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
