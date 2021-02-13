@@ -9,6 +9,13 @@
     justify-content: flex-start;
     align-items: center;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.chat-container:hover {
+    background-color: rgb(252, 252, 252);
+    box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.1);
 }
 
 .text-container {
