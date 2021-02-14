@@ -155,7 +155,7 @@ class App extends Component {
 
 
     handleOnAcceptEvent() {
-        this.createCalendarEvent();
+        this.createCalendarEvent(this.state.eventName, this.state.eventDate, this.state.eventTime);
         this.closePopup();
     }
 
@@ -183,27 +183,24 @@ class App extends Component {
         this.addChat(chat);
     }
 
-    createCalendarEvent() {
+    createCalendarEvent(eventTitle, date, time) {
 
         const ics = require('ics');
 
+        let charArray = date.split('');
+        charArray = charArray.filter((c) => (!(/[^a-zA-Z0-9]/.test(c))));
+
+        console.log(charArray);
+
+        let [hour, minutes] = time.split(':');
+
         // todo to make proper event that matches up, will probably need another GPT3 function to extract a reasonable hour time from the text
         const event = {
-            start: [2018, 5, 30, 6, 30],
-            duration: { hours: 6, minutes: 30 },
-            title: 'Bolder Boulder',
-            description: 'Annual 10-kilometer run in Boulder, Colorado',
-            location: 'Folsom Field, University of Colorado (finish line)',
-            url: 'http://www.bolderboulder.com/',
-            geo: { lat: 40.0095, lon: 105.2669 },
-            categories: ['10k races', 'Memorial Day Weekend', 'Boulder CO'],
+            start: [2021, 2, 15, hour, minutes],
+            duration: { hours: 1, minutes: 0 },
+            title: eventTitle,
             status: 'CONFIRMED',
-            busyStatus: 'BUSY',
-            organizer: { name: 'Admin', email: 'Race@BolderBOULDER.com' },
-            attendees: [
-                { name: 'Adam Gibbons', email: 'adam@example.com', rsvp: true, partstat: 'ACCEPTED', role: 'REQ-PARTICIPANT' },
-                { name: 'Brittany Seaton', email: 'brittany@example2.org', dir: 'https://linkedin.com/in/brittanyseaton', role: 'OPT-PARTICIPANT' }
-            ]
+            busyStatus: 'BUSY'
         }
 
         ics.createEvent(event, (error, value) => {

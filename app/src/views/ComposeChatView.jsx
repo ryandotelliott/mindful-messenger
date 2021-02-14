@@ -39,7 +39,7 @@ export default class ComposeChatView extends Component {
         }
         return (
             <div className={styles.container}>
-                <NavigationHeader text="Example Compose" />
+                <NavigationHeader text="Compose" />
                 {/* Replace this with other text area component with same handlers later on for different look
                     can't edit input container or else you mess up message page */}
                 <InputContainer onSend={this.handleConnect.bind(this)} onChange={this.handleChange.bind(this)} value={this.state.target} />

@@ -81,7 +81,7 @@ async function classifyEventGPT3(sender, epoch, text) {
             try {
                 let res = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
                     "prompt": prompt,
-                    "max_tokens": 20,
+                    "max_tokens": 25,
                     "temperature": 0.4,
                     "stop": "###"
                 });
