@@ -4,11 +4,7 @@ import ChatsContainer from '../components/ChatsContainer';
 import styles from '../styles/ComposeChatView.module.css';
 
 let chats = [
-    {
-        name: "Test",
-        message: "Test message",
-        image: ""
-    }
+
 ]
 
 export default class ComposeChatView extends Component {
