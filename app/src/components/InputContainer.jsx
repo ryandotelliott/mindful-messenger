@@ -5,11 +5,12 @@ import styles from '../styles/InputContainer.module.css'
 
 
 export default class InputContainer extends Component {
+
     render() {
         return (
             <div className={styles.container}>
-                <MessageInput />
-                <SendButton />
+                <MessageInput onChange={this.props.onChange} />
+                <SendButton onSend={this.props.onSend} />
             </div>
         )
     }

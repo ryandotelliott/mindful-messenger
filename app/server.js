@@ -11,14 +11,14 @@ let userSessions = {};
 io.on('connection', (client) => {
     console.log('new connection');
 
-    // client.on('typing', (data) => {
-
-    // })
+    client.on('typing', (data) => {
+        // todo
+    })
 
     client.on('private_message', (data) => {
         if (userExists(data.target)) {
             userSessions[data.target].forEach((item, index) => {
-                item.emit('private_message', { sender: client.username, message: data.message })
+                item.emit('private_message', { sender: client.username, message: data.message, epoch: data.epoch })
             });
             // todo: save to mongo here
         }
@@ -28,15 +28,23 @@ io.on('connection', (client) => {
         console.log(data.username + ' identified');
         if (userExists(data.username)) {
             client.username = data.username;
-            userSessions[data.username].push(client);
+            if (userSessions[data.username].indexOf(client) == -1) {
+                userSessions[data.username].push(client);
+            }
         } else {
             userSessions[data.username] = [client];
         }
     });
 
     client.on('disconnect', () => {
-        // todo: remove old socket from userSession?
-        console.log('disconnected');
+        if (!client.username && userExists(client.username)) {
+            let oldClient = userSessions[client.username].indexOf(client);
+            if (oldClient > -1) {
+                userSessions[client.username].splice(oldClient, 1);
+            }
+            console.log(client.username + ' disconnected');
+        }
+
     });
 });
 

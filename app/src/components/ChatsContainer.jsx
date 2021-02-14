@@ -13,7 +13,7 @@ export default class ChatsContainer extends Component {
 
     addChats() {
         return this.props.chats.map((chat) => (
-            <Chat name={chat.name} message={chat.message} imageUrl={chat.imageUrl} key={chat.id} />
+            <Chat name={chat.name} preview={chat.preview} imageUrl={chat.imageUrl} key={chat.id} />
         ));
     }
 }

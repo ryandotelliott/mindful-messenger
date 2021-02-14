@@ -6,15 +6,16 @@ import {
     Link
 } from "react-router-dom";
 import io from 'socket.io-client';
+import axios from 'axios';
 import './App.css';
 import MessagesView from './views/MessageView';
 import ChatsView from './views/ChatsView';
 import ComposeChatView from './views/ComposeChatView';
 
-const socket = io('http://localhost:8000');
-
 class App extends Component {
     state = {
+        username: 'testUser',
+        socket: io('http://localhost:8000'),
         chats: [],
         messages: []
     }
@@ -22,13 +23,103 @@ class App extends Component {
     constructor(props) {
         super(props);
 
-        socket.emit('identify', { username: 'testUser' });
-        socket.on('private_message', (data) => this.addMessage(data));
+        this.state.socket.on('private_message', (data) => {
+
+            // We add message first so we can get an accurate chat preview
+            this.addMessage(data);
+
+            console.log(data);
+            this.updateChat(data, data.sender);
+
+            // Send to GPT3
+            // axios.post('http://localhost:4242/reminder/', {
+            //     sender: data.sender,
+            //     epoch: data.epoch,
+            //     text: data.message
+            // }).then((response) => {
+            //     console.log(response.data);
+
+            //     // TODO: handle GPT3 response
+
+            // }).catch((err) => {
+            //     console.log(err);
+            // });
+
+        });
+
+        // todo: remove after debug
+        window.app = this;
+    }
+
+    componentDidMount() {
+        let usernamePrompt = prompt("Please enter your username");
+        this.setState(prevState => ({
+            ...this.state,
+            username: usernamePrompt
+        }), () => this.identify());
+    }
+
+    identify() {
+        this.state.socket.emit('identify', { username: this.state.username });
+    }
+
+    addChat(chat) {
+        let joined = this.state.chats.concat(chat);
+        this.setState({ chats: joined });
+    }
+
+    updateChat(data, targetUser) {
+        // Find most recent message to use as preview for chat box
+        let previewMessage;
+
+        for (let i = this.state.messages.length - 1; i >= 0; i--) {
+            if (this.state.messages[i].sender == data.sender) {
+                previewMessage = this.state.messages[i].message;
+                break;
+            }
+        }
+
+        // Create chat object to compare to exist to see if we need to add or just update
+        let chat = {
+            name: targetUser,
+            imageUrl: 'https://ui-avatars.com/api/?name=' + targetUser,
+            preview: previewMessage,
+            id: targetUser
+        }
+
+        // Custom index of function that only compares names
+        function indexOfChat(o, arr) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i].name == o.name) {
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        let chatIndex = indexOfChat(chat, this.state.chats)
+        if (chatIndex == -1) {
+            this.addChat(chat);
+        } else {
+            this.updateChatContents(chatIndex, chat)
+        }
+    }
+
+    updateChatContents(index, chat) {
+        let chatsCopy = [...this.state.chats]
+        chatsCopy[index] = chat;
+        this.setState({ chats: chatsCopy })
     }
 
     addMessage(message) {
-        console.log(message);
-        this.setState({ ...this.state.messages + message });
+        let joined = this.state.messages.concat(message);
+        this.setState({ messages: joined });
+    }
+
+    sendMessage(message) {
+        this.state.socket.emit('private_message', message);
+        this.addMessage(message);
+        this.updateChat(message, message.target)
     }
 
     render() {
@@ -40,7 +131,7 @@ class App extends Component {
                             <ComposeChatView />
                         </Route>
                         <Route path="/messages">
-                            <MessagesView messages={this.state.messages} />
+                            <MessagesView messages={this.state.messages} target="Harris Rothaermel" onSend={this.sendMessage.bind(this)} />
                         </Route>
                         <Route path="/">
                             <ChatsView chats={this.state.chats} />

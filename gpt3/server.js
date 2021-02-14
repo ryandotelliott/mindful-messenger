@@ -1,6 +1,7 @@
 require('dotenv').config()
 const express = require('express');
 const axios = require('axios');
+let cors = require('cors');
 axios.defaults.headers.post['Authorization'] = process.env.OPENAI_API_TOKEN
 
 var bodyParser = require('body-parser');
@@ -10,6 +11,8 @@ let promptName = 'prompt.txt'
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors());
 
 const port = 4242
 
@@ -39,7 +42,7 @@ async function sendToGPT3(sender, epoch, text) {
             prompt += "Text: " + text + "\n";
             prompt += "Classification:";
 
-            // console.log(prompt);
+            console.log(prompt);
             try {
                 let res = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
                     "prompt": prompt,
@@ -57,7 +60,7 @@ async function sendToGPT3(sender, epoch, text) {
                 }
                 parsed = parsed.slice(0, 2);
 
-                // console.log(parsed);
+                console.log(parsed);
 
                 let eventType = parsed[0].trim();
                 let reminder = parsed[1].trim();

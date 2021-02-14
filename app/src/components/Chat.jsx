@@ -8,13 +8,13 @@ export default class Chat extends Component {
         const text_container_styles = `${styles['text-container']}`;
         const chat_name_styles = `${styles['chat-name']} text-gray-darker font-medium`;
         const preview_styles = `${styles['message-preview']} text-gray-regular`;
-        
+
         return (
             <div className={chat_container_styles}>
-                <img src={this.props.imageUrl} alt="" className={image_styles}/>
+                <img src={this.props.imageUrl} alt="" className={image_styles} />
                 <div className={text_container_styles}>
                     <p className={chat_name_styles}>{this.props.name}</p>
-                    <p className={preview_styles}>{this.props.message}</p>
+                    <p className={preview_styles}>{this.props.preview}</p>
                 </div>
             </div>
         );

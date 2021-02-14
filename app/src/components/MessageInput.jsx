@@ -5,7 +5,7 @@ export default class MessageInput extends Component {
     render() {
         return (
             <div className={styles.container}>
-                <textarea className={styles['message-input']} placeholder="Type something..."/>
+                <textarea onChange={this.props.onChange} className={styles['message-input']} placeholder="Type something..." />
             </div>
         )
     }
