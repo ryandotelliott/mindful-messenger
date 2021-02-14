@@ -13,121 +13,22 @@ import ComposeChatView from './views/ComposeChatView';
 
 const socket = io('http://localhost:8000');
 
-let chats = [
-    {
-        name: "Harris Rothaermel",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 1
-    },
-    {
-        name: "Aditya Singhal",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 2
-    },
-    {
-        name: "Ryan Elliott",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 3
-    },
-    {
-        name: "Harris Rothaermel",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 4
-    },
-    {
-        name: "Aditya Singhal",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 5
-    },
-    {
-        name: "Ryan Elliott",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 6
-    },
-    {
-        name: "Harris Rothaermel",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 7
-    },
-    {
-        name: "Aditya Singhal",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 8
-    },
-    {
-        name: "Ryan Elliott",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 9
-    },
-    {
-        name: "Harris Rothaermel",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 10
-    },
-    {
-        name: "Aditya Singhal",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 11
-    },
-    {
-        name: "Ryan Elliott",
-        imageUrl: "https://i.imgur.com/3LdWieK.png",
-        message: "This is an example message to show how the app looks with chats.",
-        id: 12
-    },
-]
-
-let messages = [
-    {
-        content: "This is a sample message.",
-        sender: true,
-        id: 1
-    },
-    {
-        content: "This is a sample message.",
-        sender: false,
-        id: 2
-    },
-    {
-        content: "This is a sample message.",
-        sender: true,
-        id: 3
-    },
-    {
-        content: "This is a sample message.",
-        sender: true,
-        id: 4
-    },
-    {
-        content: "This is a sample message.",
-        sender: false,
-        id: 5
-    },
-    {
-        content: "This is a sample message.",
-        sender: true,
-        id: 6
-    },
-]
-
 class App extends Component {
-    state = {}
+    state = {
+        chats: [],
+        messages: []
+    }
 
     constructor(props) {
         super(props);
 
         socket.emit('identify', { username: 'testUser' });
+        socket.on('private_message', (data) => this.addMessage(data));
+    }
+
+    addMessage(message) {
+        console.log(message);
+        this.setState({ ...this.state.messages + message });
     }
 
     render() {
@@ -139,10 +40,10 @@ class App extends Component {
                             <ComposeChatView />
                         </Route>
                         <Route path="/messages">
-                            <MessagesView messages={messages} />
+                            <MessagesView messages={this.state.messages} />
                         </Route>
                         <Route path="/">
-                            <ChatsView chats={chats} />
+                            <ChatsView chats={this.state.chats} />
                         </Route>
                     </Switch>
 
