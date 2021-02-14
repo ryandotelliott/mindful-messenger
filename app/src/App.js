@@ -23,7 +23,8 @@ class App extends Component {
         messages: [],
         popup: false,
         eventName: "",
-        eventDate: ""
+        eventDate: "",
+        eventTime: "",
     }
 
     constructor(props) {
@@ -124,28 +125,42 @@ class App extends Component {
             epoch: data.epoch,
             text: data.message
         }).then((response) => {
-            console.log(response.data);
             if (response.data.eventType == "Event") {
-                this.setState({
-                    popup: true,
-                    eventName: response.data.title,
-                    eventDate: response.data.date,
-                })
+                this.getTimeFromGPT3(data.message).then((res) => {
+                    this.setState({
+                        popup: true,
+                        eventName: response.data.title,
+                        eventDate: response.data.date,
+                        eventTime: res.data.time
+                    });
+                });
             }
-
         }).catch((err) => {
             console.log(err);
         });
     }
 
+    async getTimeFromGPT3(data) {
+        return new Promise((resolve, reject) => {
+            axios.post('http://localhost:4242/getTime/', {
+                text: data
+            }).then((response) => {
+                resolve(response);
+            }).catch((err) => {
+                reject(err);
+            })
+        })
+    }
+
+
+
     handleOnAcceptEvent() {
-        console.log('event added');
         this.createCalendarEvent();
         this.closePopup();
     }
 
     handleOnDenyEvent() {
-        console.log('event rejected');
+
         this.closePopup();
     }
 
@@ -196,8 +211,6 @@ class App extends Component {
                 console.log(error);
                 return;
             }
-
-            console.log(value);
             save(value.toString(), 'event.ics');
         });
     }
@@ -229,6 +242,7 @@ class App extends Component {
                         {props => <div style={props}>
                             <NewEventNotification eventName={this.state.eventName}
                                 eventDate={this.state.eventDate}
+                                eventTime={this.state.eventTime}
                                 onAccept={this.handleOnAcceptEvent.bind(this)}
                                 onDeny={this.handleOnDenyEvent.bind(this)} />
                         </div>}

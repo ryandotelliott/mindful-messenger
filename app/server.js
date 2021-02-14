@@ -16,10 +16,6 @@ io.on('connection', (client) => {
     })
 
     client.on('private_message', (data) => {
-        console.log('New Message!')
-        console.log('Sender: ' + client.username);
-        console.log('Target: ' + data.target)
-
         if (userExists(data.target)) {
             userSessions[data.target].forEach((item, index) => {
                 item.emit('private_message', { sender: client.username, message: data.message, epoch: data.epoch })
