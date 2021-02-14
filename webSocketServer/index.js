@@ -26,8 +26,8 @@ wsServer.on('request', (request) => {
     console.log('connected: ' + userID + ' in ' + Object.getOwnPropertyNames(clients));
 
     connection.on('message', (message) => {
-        if (message.type = 'utf8') {
-            console.log('Recieved Message: ', + message.utf8Data);
+        if (message.type == 'utf8') {
+            console.log('Recieved Message: ', message.utf8Data);
         }
     })
 })
