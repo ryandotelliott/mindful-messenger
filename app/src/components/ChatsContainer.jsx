@@ -14,7 +14,7 @@ export default class ChatsContainer extends Component {
 
     addChats() {
         return this.props.chats.map((chat) => (
-            <Link to={"/messages/" + chat.name}>
+            <Link to={"/messages/" + chat.name} style={styles["link"]}>
                 <Chat name={chat.name} preview={chat.preview} imageUrl={chat.imageUrl} key={chat.id} />
             </Link>
         ));

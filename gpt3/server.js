@@ -68,7 +68,14 @@ async function sendToGPT3(sender, epoch, text) {
                     reminder = reminder.substring(9).trim();
                 }
 
-                resolve([eventType, reminder]);
+                let date = "";
+                if (reminder.includes("]")) {
+                    let index = reminder.indexOf("]");
+                    date = reminder.substring(0, index + 1);
+                    reminder = reminder.substring(index + 1).trim();
+                }
+
+                resolve([eventType, date, reminder]);
             } catch (err) {
                 reject(err)
             }
@@ -85,8 +92,9 @@ app.get('/', (req, res) => {
 app.post("/reminder/", async (req, res) => {
     try {
         const result = await sendToGPT3(req.body.sender, req.body.epoch, req.body.text);
+        console.log(result)
         if (Array.isArray(result)) {
-            res.send({ eventType: result[0], reminder: result[1] });
+            res.send({ eventType: result[0], date: result[1], title: result[2] });
         } else res.send(400, result);
 
     } catch (err) {

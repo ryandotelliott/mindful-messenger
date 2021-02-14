@@ -12,8 +12,8 @@ export default class NewEventNotification extends Component {
                     <p><span className="font-medium">Time: </span>{this.props.eventTime}</p>
                 </div>
                 <div className={styles['button-container']}>
-                    <button className={styles['button-large']}>Add Event</button>
-                    <button className={styles['button-small']}>No Thanks</button>
+                    <button className={styles['button-large']} onClick={this.props.onAccept}>Add Event</button>
+                    <button className={styles['button-small']} onClick={this.props.onDeny}>No Thanks</button>
                 </div>
             </div>
         )
