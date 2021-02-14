@@ -12,6 +12,12 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+    background-color: #f8fafc;
+    display: flex;
+    justify-content: center;
+}
+
 *:focus {
     outline: none;
 }

@@ -3,6 +3,7 @@
     flex-direction: column;
     width: 100%;
     padding: 20px;
+    flex-grow: 1;
 }
 
 .container > :not(:last-child) {
