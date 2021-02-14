@@ -1,0 +1,146 @@
+Text: It's my birthday tomorrow!
+Time: All-day
+
+###
+
+Text: Let's go running tomorrow at 9.
+Time: 9:00
+
+###
+
+Text: Just sent my grad school applications. Will know results in two weeks!
+Time: All-day
+
+###
+
+Text: I got it! I got an interview! It's on Thursday at 3PM!
+Time: 15:00
+
+###
+
+Text: Restaurant reservation is tomorrow at 8:00 PM at 1800 North State Street, Provo, Utah 84604.
+Time: 20:00
+
+###
+
+Text: Wanna get lunch tomorrow?
+Time: 12:00
+
+###
+
+Text: Tomorrow is Hank's birthday
+Time: All-day
+
+###
+
+Text: Don't miss breakfast tomorrow!
+Time: 9:00
+
+###
+
+Text: Are you coming to brunch tomorrow?
+Time: 11:00
+
+###
+
+Text Class starts at two.
+Time: 14:00
+
+###
+
+Text: Workout at 0600 sharp.
+Time: 6:00
+
+###
+
+Text: Can you pick up Roman after school?
+Time: 16:00
+
+###
+
+Text: Want to get drinks later?
+Time: 18:00
+
+###
+
+Text: I'll pick you up at noon.
+Time: 12:00
+
+###
+
+Text: Get dressed and ready to go by 8.
+Time: 8:00
+
+###
+
+Text: Wanna come swimming with me after work?
+Time: 18:00
+
+###
+
+Text: Hurry we need to get chipotle before they close at 9!
+Time: 21:00
+
+###
+
+Text: I have my exam tomorrow at noon.
+Time: 12:00
+
+###
+
+Text: What are you doing Wednesday at three?
+Time: 15:00
+
+###
+
+Text: The Olympics will be on at 2AM! Don't forget!
+Time: 2:00
+
+###
+
+Text: Party will be from 11 AM till 4PM
+Time: 11:00 | 16:00
+
+###
+
+Text: Class is from 8AM till 8:45AM
+Time: 8:00 | 8:45
+
+###
+
+Text: Are you gonna be at church tomorrow? Starts at 1:30, is 2 hours long.
+Time: 13:30 | 15:30
+
+###
+
+Text: I'm going to the gym at 8pm today, you coming?
+Time: 20:00
+
+###
+
+Text: I'll bet at work from 8am till 5pm
+Time: 8:00 | 17:00
+
+###
+
+Text: I'll be on my flight from noon till 4
+Time: 12:00 | 16:00
+
+###
+
+Text: Your appointment is at 3:00PM. It should only take 30 minutes.
+Time: 15:00 | 15:30
+
+###
+
+Text: Don't come in on Monday, we're renovating the place.
+Time: All-day
+
+###
+
+Text: LoL at 7?
+Time: 19:00
+
+###
+
+Text: 

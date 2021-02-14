@@ -7,7 +7,8 @@ axios.defaults.headers.post['Authorization'] = process.env.OPENAI_API_TOKEN
 var bodyParser = require('body-parser');
 var fs = require('fs');
 
-let promptName = 'prompt.txt'
+let promptName = 'prompt.txt';
+let timePromptName = 'timeprompt.txt';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,7 +17,41 @@ app.use(cors());
 
 const port = 4242
 
-async function sendToGPT3(sender, epoch, text) {
+
+async function getTimeFromTextGPT3(text) {
+
+    let prompt;
+
+    let returnValue = await new Promise((resolve, reject) => {
+        fs.readFile(timePromptName, 'utf8', async (err, data) => {
+            if (err)
+                throw err;
+            prompt = data;
+
+            prompt += text + "\n";
+            prompt += "Time:";
+
+            // console.log(prompt);
+
+            try {
+
+                let res = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
+                    "prompt": prompt,
+                    "max_tokens": 10,
+                    "temperature": 0.1,
+                    "stop": ["###", "\n", "Text:"]
+                })
+                resolve(res.data.choices[0].text.trim());
+            } catch (err) {
+                reject(err);
+            }
+        })
+    });
+
+    return returnValue;
+}
+
+async function classifyEventGPT3(sender, epoch, text) {
 
     let prompt;
 
@@ -29,7 +64,7 @@ async function sendToGPT3(sender, epoch, text) {
                 throw err;
             prompt = data;
 
-            var date = new Date(epoch * 1000);
+            var date = new Date(epoch);
 
             var year = date.getFullYear();
             var month = monthNames[date.getMonth()];
@@ -42,7 +77,7 @@ async function sendToGPT3(sender, epoch, text) {
             prompt += "Text: " + text + "\n";
             prompt += "Classification:";
 
-            console.log(prompt);
+            // console.log(prompt);
             try {
                 let res = await axios.post('https://api.openai.com/v1/engines/davinci/completions', {
                     "prompt": prompt,
@@ -60,7 +95,7 @@ async function sendToGPT3(sender, epoch, text) {
                 }
                 parsed = parsed.slice(0, 2);
 
-                console.log(parsed);
+                // console.log(parsed);
 
                 let eventType = parsed[0].trim();
                 let reminder = parsed[1].trim();
@@ -91,12 +126,22 @@ app.get('/', (req, res) => {
 
 app.post("/reminder/", async (req, res) => {
     try {
-        const result = await sendToGPT3(req.body.sender, req.body.epoch, req.body.text);
+        const result = await classifyEventGPT3(req.body.sender, req.body.epoch, req.body.text);
         console.log(result)
         if (Array.isArray(result)) {
             res.send({ eventType: result[0], date: result[1], title: result[2] });
         } else res.send(400, result);
 
+    } catch (err) {
+        console.log(err);
+    }
+})
+
+app.post("/getTime/", async (req, res) => {
+    try {
+        const result = await getTimeFromTextGPT3(req.body.text);
+        console.log(result);
+        res.send({ time: result });
     } catch (err) {
         console.log(err);
     }
