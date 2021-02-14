@@ -34,10 +34,9 @@ export default class MessageView extends Component {
             message: ""
         })
     }
-
     // TODO:
     messageFilter(message) {
-        return ((message.sender == this.props.viewer) || (message.sender = this.props.match.params.target));
+        return ((message.sender == this.props.viewer) || (message.sender == this.props.match.params.target));
     }
 
     render() {

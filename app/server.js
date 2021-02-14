@@ -1,3 +1,4 @@
+import { Firebase} from './src/components/Firebase/firebase';
 const app = require('express')();
 const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
@@ -5,6 +6,7 @@ const io = require('socket.io')(http, {
         origin: '*',
     }
 });
+let logging = new Firebase();
 
 let userSessions = {};
 
