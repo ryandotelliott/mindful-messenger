@@ -19,14 +19,12 @@ export default class MessageView extends Component {
     }
 
     handleChange(event) {
-        console.log('ping');
         this.setState({
             message: event.target.value
         })
     }
 
     handleSend() {
-        console.log('pong');
         this.props.onSend({
             target: this.props.match.params.target,
             message: this.state.message,
@@ -37,12 +35,16 @@ export default class MessageView extends Component {
         })
     }
 
+    // TODO:
+    messageFilter(message) {
+        return ((message.sender == this.props.viewer) || (message.sender = this.props.match.params.target));
+    }
 
     render() {
         return (
             <div className={styles.container}>
                 <NavigationHeader text={this.props.match.params.target} />
-                <MessagesContainer messages={this.props.messages} viewer={this.props.viewer} />
+                <MessagesContainer messages={this.props.messages.filter(message => this.messageFilter(message))} viewer={this.props.viewer} />
                 <InputContainer onSend={this.handleSend} onChange={this.handleChange} value={this.state.message} />
             </div>
         )

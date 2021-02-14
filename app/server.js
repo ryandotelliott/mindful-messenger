@@ -16,6 +16,10 @@ io.on('connection', (client) => {
     })
 
     client.on('private_message', (data) => {
+        console.log('New Message!')
+        console.log('Sender: ' + client.username);
+        console.log('Target: ' + data.target)
+
         if (userExists(data.target)) {
             userSessions[data.target].forEach((item, index) => {
                 item.emit('private_message', { sender: client.username, message: data.message, epoch: data.epoch })
@@ -27,13 +31,13 @@ io.on('connection', (client) => {
     client.on('identify', (data) => {
         console.log(data.username + ' identified');
         if (userExists(data.username)) {
-            client.username = data.username;
             if (userSessions[data.username].indexOf(client) == -1) {
                 userSessions[data.username].push(client);
             }
         } else {
             userSessions[data.username] = [client];
         }
+        client.username = data.username;
     });
 
     client.on('disconnect', () => {
