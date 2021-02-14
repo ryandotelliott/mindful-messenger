@@ -28,9 +28,12 @@ export default class MessageView extends Component {
     handleSend() {
         console.log('pong');
         this.props.onSend({
-            target: this.props.target,
+            target: this.props.match.params.target,
             message: this.state.message,
             epoch: Date.now()
+        })
+        this.setState({
+            message: ""
         })
     }
 
@@ -38,9 +41,9 @@ export default class MessageView extends Component {
     render() {
         return (
             <div className={styles.container}>
-                <NavigationHeader text="Example Chat" />
-                <MessagesContainer messages={this.props.messages} />
-                <InputContainer onSend={this.handleSend} onChange={this.handleChange} />
+                <NavigationHeader text={this.props.match.params.target} />
+                <MessagesContainer messages={this.props.messages} viewer={this.props.viewer} />
+                <InputContainer onSend={this.handleSend} onChange={this.handleChange} value={this.state.message} />
             </div>
         )
     }

@@ -112,11 +112,14 @@ class App extends Component {
     }
 
     addMessage(message) {
+        if (!message.sender) message.sender = this.state.username;
         let joined = this.state.messages.concat(message);
         this.setState({ messages: joined });
     }
 
     sendMessage(message) {
+        console.log('App base:');
+        console.log(message);
         this.state.socket.emit('private_message', message);
         this.addMessage(message);
         this.updateChat(message, message.target)
@@ -127,15 +130,12 @@ class App extends Component {
             <Router>
                 <div className="App">
                     <Switch>
-                        <Route path="/compose">
-                            <ComposeChatView />
-                        </Route>
-                        <Route path="/messages">
-                            <MessagesView messages={this.state.messages} target="Harris Rothaermel" onSend={this.sendMessage.bind(this)} />
-                        </Route>
-                        <Route path="/">
-                            <ChatsView chats={this.state.chats} />
-                        </Route>
+                        <Route path="/compose"
+                            render={(props) => (<ComposeChatView {...props} />)} />
+                        <Route
+                            path="/messages/:target"
+                            render={(props) => (<MessagesView {...props} messages={this.state.messages} viewer={this.state.username} onSend={this.sendMessage.bind(this)} />)} />
+                        <Route path="/" render={(props) => (<ChatsView {...props} chats={this.state.chats} />)} />
                     </Switch>
 
                 </div>

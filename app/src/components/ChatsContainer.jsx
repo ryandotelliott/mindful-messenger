@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Chat from './Chat';
 import styles from '../styles/ChatsContainer.module.css';
+import { Link } from 'react-router-dom';
 
 export default class ChatsContainer extends Component {
     render() {
@@ -13,7 +14,9 @@ export default class ChatsContainer extends Component {
 
     addChats() {
         return this.props.chats.map((chat) => (
-            <Chat name={chat.name} preview={chat.preview} imageUrl={chat.imageUrl} key={chat.id} />
+            <Link to={"/messages/" + chat.name}>
+                <Chat name={chat.name} preview={chat.preview} imageUrl={chat.imageUrl} key={chat.id} />
+            </Link>
         ));
     }
 }

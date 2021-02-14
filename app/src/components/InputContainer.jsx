@@ -9,7 +9,7 @@ export default class InputContainer extends Component {
     render() {
         return (
             <div className={styles.container}>
-                <MessageInput onChange={this.props.onChange} />
+                <MessageInput onChange={this.props.onChange} value={this.props.value} />
                 <SendButton onSend={this.props.onSend} />
             </div>
         )

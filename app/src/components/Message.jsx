@@ -3,7 +3,7 @@ import styles from '../styles/Message.module.css';
 
 export default class Message extends Component {
     render() {
-        const message_styles = this.props.sender ? styles['message-container-sender'] : styles['message-container-receiver'];
+        const message_styles = this.props.sender != this.props.viewer ? styles['message-container-receiver'] : styles['message-container-sender'];
 
         return (
             <div className={message_styles}>

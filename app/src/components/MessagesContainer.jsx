@@ -13,7 +13,7 @@ export default class MessagesContainer extends Component {
 
     renderMessages() {
         return this.props.messages.map((message) => (
-            <Message content={message.message} sender={message.sender} key={message.id} />
+            <Message viewer={this.props.viewer} content={message.message} sender={message.sender} key={message.id} />
         ));
     }
 }
