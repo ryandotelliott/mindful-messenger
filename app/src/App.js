@@ -1,13 +1,12 @@
-import './App.css';
-import io from 'socket.io-client';
-
+import React, { Component } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
-
+import io from 'socket.io-client';
+import './App.css';
 import MessagesView from './views/MessageView';
 import ChatsView from './views/ChatsView';
 import ComposeChatView from './views/ComposeChatView';
@@ -122,31 +121,35 @@ let messages = [
     },
 ]
 
-constructor(props) {
-    super(props);
+class App extends Component {
+    state = {}
 
-    socket.emit('identify', { username: 'testUser' });
-}
+    constructor(props) {
+        super(props);
 
-function App() {
-    return (
-        <Router>
-            <div className="App">
-                <Switch>
-                    <Route path="/compose">
-                        <ComposeChatView />
-                    </Route>
-                    <Route path="/messages">
-                        <MessagesView messages={messages} />
-                    </Route>
-                    <Route path="/">
-                        <ChatsView chats={chats} />
-                    </Route>
-                </Switch>
+        socket.emit('identify', { username: 'testUser' });
+    }
 
-            </div>
-        </Router>
-    );
+    render() {
+        return (
+            <Router>
+                <div className="App">
+                    <Switch>
+                        <Route path="/compose">
+                            <ComposeChatView />
+                        </Route>
+                        <Route path="/messages">
+                            <MessagesView messages={messages} />
+                        </Route>
+                        <Route path="/">
+                            <ChatsView chats={chats} />
+                        </Route>
+                    </Switch>
+
+                </div>
+            </Router>
+        );
+    }
 }
 
 export default App;
