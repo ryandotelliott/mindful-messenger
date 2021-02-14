@@ -157,6 +157,17 @@ class App extends Component {
         })
     }
 
+    handleConnect(target) {
+        let chat = {
+            name: target,
+            imageUrl: 'https://ui-avatars.com/api/?name=' + target,
+            preview: "",
+            id: target
+        }
+
+        this.addChat(chat);
+    }
+
     createCalendarEvent() {
 
         const ics = require('ics');
@@ -198,7 +209,7 @@ class App extends Component {
                 <div className="App">
                     <Switch>
                         <Route path="/compose"
-                            render={(props) => (<ComposeChatView {...props} />)} />
+                            render={(props) => (<ComposeChatView {...props} onConnect={this.handleConnect.bind(this)} />)} />
                         <Route
                             path="/messages/:target"
                             render={(props) => (<MessagesView {...props} messages={this.state.messages} viewer={this.state.username} onSend={this.sendMessage.bind(this)} />)} />
