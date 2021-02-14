@@ -6,7 +6,7 @@ export default class ChatsView extends Component {
     render() {
         return (
             <div>
-                <GenericHeader text="Chats" image="add_chat"/>
+                <GenericHeader text="Chats" image="add_chat" route="/compose"/>
                 <ChatsContainer chats={this.props.chats}/>
             </div>
         )

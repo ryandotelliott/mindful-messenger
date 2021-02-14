@@ -10,6 +10,7 @@ import {
 
 import MessagesView from './views/MessageView';
 import ChatsView from './views/ChatsView';
+import ComposeChatView from './views/ComposeChatView';
 
 const socket = io('http://localhost:8000');
 
@@ -90,32 +91,32 @@ let chats = [
 
 let messages = [
     {
-        content: "Hello there, this is an example message sent using Avocado Ai!",
+        content: "This is a sample message.",
         sender: true,
         id: 1
     },
     {
-        content: "Using Avocado Ai you are able to get smart calender events from your messages.",
+        content: "This is a sample message.",
         sender: false,
         id: 2
     },
     {
-        content: "We're also able to give smart suggestions and sentiment analysis!",
+        content: "This is a sample message.",
         sender: true,
         id: 3
     },
     {
-        content: "Hello there, this is an example message sent using Avocado Ai!",
+        content: "This is a sample message.",
         sender: true,
         id: 4
     },
     {
-        content: "Using Avocado Ai you are able to get smart calender events from your messages.",
+        content: "This is a sample message.",
         sender: false,
         id: 5
     },
     {
-        content: "We're also able to give smart suggestions and sentiment analysis!",
+        content: "This is a sample message.",
         sender: true,
         id: 6
     },
@@ -132,6 +133,9 @@ function App() {
         <Router>
             <div className="App">
                 <Switch>
+                    <Route path="/compose">
+                        <ComposeChatView />
+                    </Route>
                     <Route path="/messages">
                         <MessagesView messages={messages} />
                     </Route>
