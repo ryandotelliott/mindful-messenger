@@ -1,12 +1,17 @@
 import './App.css';
-import MessagesView from './views/MessageView';
+import io from 'socket.io-client';
+
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
+
+import MessagesView from './views/MessageView';
 import ChatsView from './views/ChatsView';
+
+const socket = io('http://localhost:8000');
 
 let chats = [
     {
@@ -115,6 +120,12 @@ let messages = [
         id: 6
     },
 ]
+
+constructor(props) {
+    super(props);
+
+    socket.emit('identify', { username: 'testUser' });
+}
 
 function App() {
     return (
